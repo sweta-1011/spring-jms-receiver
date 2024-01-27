@@ -1,4 +1,5 @@
 package com.example.spring.consumer;
+
 import com.example.spring.producer.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ import javax.jms.MessageListener;
 
 //implements MessageListener (only for asynchronous receive without annotation)
 @Component
-public class Receiver  {
+public class Receiver {
 
     @Autowired
     MessageConverter messageConverter;
@@ -56,7 +57,7 @@ public class Receiver  {
     }*/
 
 
-   //----------------------for Asynchronous message receive (without annotation) ---------------
+    //----------------------for Asynchronous message receive (without annotation) ---------------
 
     /*public void onMessage(Message message) {
 
@@ -76,29 +77,27 @@ public class Receiver  {
 
     //----------------------for Asynchronous message receive (using annotation)--------------------------------
 
-        @JmsListener(destination = "temp1", containerFactory = "factory1")
-        public void receiveMessage1(Product message)throws JMSException{
-            //listener container behind the scenes for each annotated method, using a JmsListenerContainerFactory
+    @JmsListener(destination = "temp1", containerFactory = "factory1")
+    public void receiveMessage1(Product message) throws JMSException {
+        //listener container behind the scenes for each annotated method, using a JmsListenerContainerFactory
 
 //            MessageHeaders headers = message.getHeaders();
 //            System.out.println(headers);
-            System.out.println("received message ="+ message + " from temp1");
-        }
+        System.out.println("received message =" + message + " from temp1");
+    }
 
-        @JmsListener(destination = "temp2", containerFactory = "factory2")
-        public void receiveMessag2(Product message)throws JMSException{
-            //listener container behind the scenes for each annotated method, using a JmsListenerContainerFactory
+    @JmsListener(destination = "temp2", containerFactory = "factory2")
+    public void receiveMessag2(Product message) throws JMSException {
+        //listener container behind the scenes for each annotated method, using a JmsListenerContainerFactory
 
-            System.out.println("received message ="+ message + " from temp2");
-        }
+        System.out.println("received message =" + message + " from temp2");
+    }
 
 }
 
 
-
-
 //----Queue(point-to-point)---
-    //-- there is only 1 client for each message.
+//-- there is only 1 client for each message.
 //-1: Asynchronous receive - the sender sends many messages to queue and when the receiver appln starts, it receives all the messages.
 //-2: Synchronous receive - the sender sends many messages to queue and when receiver appln starts, it receives 1 message, then it
 //                           starts again and receives 2nd message etc.

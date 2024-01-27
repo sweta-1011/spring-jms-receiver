@@ -6,15 +6,14 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 public class MessageReceiverApp {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(ReceiverConfig.class);
 
         //---for asynchronous message receiving---
         try {
             Thread.sleep(6000000);
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

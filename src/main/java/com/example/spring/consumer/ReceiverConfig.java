@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 @Configuration
 @ComponentScan(basePackages = "com.example.spring")
-@EnableJms//to enable support for the @JmsListener annotation that was used on the Receiver.(to enable detection of JmsListener annotation)
+@EnableJms  //to enable support for the @JmsListener annotation that was used on the Receiver.(to enable detection of JmsListener annotation)
 @PropertySource("application.properties")
 public class ReceiverConfig {
 
@@ -32,7 +32,7 @@ public class ReceiverConfig {
 
 
     @Bean
-    public ConnectionFactory receiverActiveMQConnectionFactory(){
+    public ConnectionFactory receiverActiveMQConnectionFactory() {
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
         //activeMQConnectionFactory.setBrokerURL("tcp://localhost:61616");
         activeMQConnectionFactory.setBrokerURL(brokerUrl);
@@ -56,7 +56,7 @@ public class ReceiverConfig {
 
     //it will receive message from the queue and pass it on the bean which is annotated with @JmsListener
     @Bean("factory1")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory1(){
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory1() {
 
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(receiverActiveMQConnectionFactory());
@@ -66,7 +66,7 @@ public class ReceiverConfig {
     }
 
     @Bean("factory2")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory2(){
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory2() {
 
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(receiverActiveMQConnectionFactory());
@@ -90,7 +90,7 @@ public class ReceiverConfig {
     }*/
 
     @Bean
-    MessageConverter converter(){
+    MessageConverter converter() {
         return new SimpleMessageConverter();
     }
 
